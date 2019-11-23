@@ -1,22 +1,17 @@
 # Practica-3-recetario.
-## Install/Run
-
-All the necessary packages are in the `package.json` file.
-
-To install them, run this command:
+## Instalar/Run
 
 ```js
 npm install
 ```
 
-To run the programme in the server 3003
+ejecutar el GraphQLServer en: http://localhost:4000
 
-```js
-npm start
-```
+
+
 ## Query
 
-- Print all recipes
+- Imprimir todas las recetas
 
 ```js
 query{
@@ -25,15 +20,16 @@ query{
   }
 ```
 
-- Print all authors
+- Imprimir todos los autores de la base de datos
 
 ```js
 query{
   authors{
     name
+    email
   }
 ```
-- Print all ingredients
+- Imprimir todos los ingredientes de la base de datos
 
 ```js
 query{
@@ -42,94 +38,105 @@ query{
   }
 ```
 
-- Print all recipes of an author
+- Imprimir todas las recetas de la base de datos
 
 ```js
 query{
-  authorRecipes(name:"Luis"){
+  recipes{
     title
+    description
+    author{
+      name
+    }
+    ingredients{
+      name
+    }
   }
 }
 ```
 
-- Print all recipes of a ingredient
-
-```js
-query{
-  ingredientRecipes(name:"Tomate"){
-    title
-  }
-}
-```
 
 ## Mutations
 
-- Add a recipe
+- Añadir receta
 
 ```js
 mutation{
-  addRecipe(title:"ensalada2",description:"hi",mail:"lfresnog@gmail.com",ingredients:["1","2"]){
+  addRecipe(title:"patata",description:"nada",author:"364783264",ingredients:["378432647345287","234632846328"]){
     title
   }
 }
 ```
 
-- Add a author
+- Añadir autor
 
 ```js
 mutation{
-  addAuthor(name:"Hector",mail:"h@gmail.com"){
+  addAuthor(name:"stef",email:"stef@gmail.com"){
     name
   }
 }
 ```
 
-- Add a ingredient
+- Añadir ingrediente
 
 ```js
 mutation{
-  addIngredient(name:"Aceite"){
+  addIngredient(name:"patata"){
     name
   }
 }
 ```
 
-- Delete a recipe
+- Eleminar receta
 
 ```js
 mutation{
-  deleteRecipe(name:"ensalada2")
+  removeRecipe(title:"patata")
 }
 ```
 
-- Delete an author
+- Eliminar autor
 
 ```js
 mutation{
-  deleteAuthor(name:"Luis")
+  removeAuthor(name:"stef")
 }
 ```
 
-- Delete a ingredient
+- Eliminar un ingrediente
 
 ```js
 mutation{
-  deleteIngredient(name:"Tomate")
+  removeIngredient(name:"patata")
 }
 ```
 
-- Update an author
+- Modificar los datos del autor
 
 ```js
 mutation{
-  updateAuthor(name:"Luis",n_name:"Hector")
+  updateAuthor(_id:"24623847326",name:"steff",email:"steff@gmail.com"){
+     name
+  }
 }
 ```
 
-- Update a ingredient
+- Modifcar un ingrediente
 
 ```js
 mutation{
-updateIngredient(name:"Lechuga",n_name:"Lechuga1")
+  updateIngredient(_id:"34326487326",name:"patatas"){
+  name
+  }
+}
+```
+- Modifcar una receta
+
+```js
+mutation{
+  updateRecipe(_id:"34326487326",name:"receta", author:"32482346",ingredients:"76487254"){
+    name
+  }
 }
 ```
